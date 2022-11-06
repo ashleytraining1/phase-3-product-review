@@ -23,7 +23,15 @@ puts "Creating reviews..."
 # * and a review belongs to an user.                              *
 # *****************************************************************
 # Create Reviews Here
+15.times do 
+    user_ids = User.all.map {|user| user.id}
+    product_ids = Product.all.map {|product| product.id}
 
-
-
+    Review.create(
+        comment: Faker::Lorem.sentence(word_count: rand(1...10))
+        star_rating: rand(1..10),
+        product_id: product_ids[rand(0..4)],
+        user_id: user_ids[rand(0..2)],
+    )
+end
 puts "Seeding done!"
